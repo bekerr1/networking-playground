@@ -47,7 +47,7 @@ A very common workflow to demonstrate might be an HTTP request. This request wou
 
 ```
 +-------------------+
-| 7. Application    | []
+| 7. HTTP            | []
 +-------------------+
 ```
 
@@ -55,7 +55,7 @@ Lets say we are sending a POST request to the server for /foo at http://managmen
 
 ```
 +-------------------+
-| 7. Application    | [HTTP Header | Payload (body)]
+| 7. HTTP           | [HTTP Header | Payload (body)]
 +-------------------+
 ```
 
@@ -90,9 +90,9 @@ Upon updating our data illustration for the 'socket', 'getaddrinfo' and 'connect
 
 ```
 +-------------------+
-| 7. Application    | [HTTP Header (VERB / URI / Content-Type) | Payload (body)]
+| 7. HTTP           | [HTTP Header (VERB / URI / Content-Type) | Payload (body)]
 +-------------------+
-| 4. Transport      | [TCP Header (Source port / Dest port) | Payload ([HTTP Header | Payload (body)]) ]
+| 4. TCP            | [TCP Header (Source port / Dest port) | Payload ([HTTP Header | Payload (body)]) ]
 +-------------------+
 | 3. IPv4           | [IPv4 Header (Source IP / Dest IP) | Payload ([TCP Header (Source port / Dest port) | Payload ([HTTP Header | Payload (body)]) ]) ]
 +-------------------+
@@ -102,9 +102,9 @@ Now the real fun begins! The kernel will start processing the request down each 
 
 ```
 +-------------------+
-| 7. Application    | [HTTP Header (VERB / URI / Content-Type) | Payload (body)]
+| 7. HTTP           | [HTTP Header (VERB / URI / Content-Type) | Payload (body)]
 +-------------------+
-| 4. Transport      | [TCP Header (Source port / Dest port) | Payload ([HTTP Header | Payload (body)]) ]
+| 4. TCP            | [TCP Header (Source port / Dest port) | Payload ([HTTP Header | Payload (body)]) ]
 +-------------------+
 | 3. IPv4           | [IPv4 Header (Source IP / Dest IP) | Payload ([TCP Header (Source port / Dest port) | Payload ([HTTP Header | Payload (body)]) ]) ]
 +-------------------+
@@ -126,9 +126,9 @@ This would roughly be the skbuf state for our payload.
 
 ```
 +-------------------+
-| 7. Application    | [HTTP Header (VERB / URI / Content-Type) | Payload (body)]
+| 7. HTTP           | [HTTP Header (VERB / URI / Content-Type) | Payload (body)]
 +-------------------+
-| 4. Transport      | [TCP Header (Source port / Dest port) | Payload ([HTTP Header | Payload (body)]) ]
+| 4. TCP            | [TCP Header (Source port / Dest port) | Payload ([HTTP Header | Payload (body)]) ]
 +-------------------+
 | 3. IPv4           | [IPv4 Header (Source IP / Dest IP) | Payload ([TCP Header (Source port / Dest port) | Payload ([HTTP Header | Payload (body)]) ]) ]
 +-------------------+
