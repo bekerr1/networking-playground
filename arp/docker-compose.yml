@@ -1,0 +1,54 @@
+version: '3.9'
+
+networks:
+  lan:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+services:
+  node1:
+    image: nicolaka/netshoot
+    container_name: node1
+    hostname: node1
+    networks:
+      lan:
+        ipv4_address: 172.28.0.11
+    volumes:
+      - ./pcaps:/captures
+    command: /bin/sh -c 'tcpdump -i eth0 -w /captures/$(hostname).pcap'
+    tty: true
+
+  node2:
+    image: nicolaka/netshoot
+    container_name: node2
+    hostname: node2
+    networks:
+      lan:
+        ipv4_address: 172.28.0.12
+    volumes:
+      - ./pcaps:/captures
+    command: /bin/sh -c 'tcpdump -i eth0 -w /captures/$(hostname).pcap'
+    tty: true
+
+  node3:
+    image: nicolaka/netshoot
+    container_name: node3
+    hostname: node3
+    networks:
+      lan:
+        ipv4_address: 172.28.0.13
+    volumes:
+      - ./pcaps:/captures
+    command: /bin/sh -c 'tcpdump -i eth0 -w /captures/$(hostname).pcap'
+    tty: true
+
+  node4:
+    image: nicolaka/netshoot
+    container_name: node4
+    hostname: node4
+    volumes:
+      - ./pcaps:/captures
+    command: /bin/sh -c 'tcpdump -i eth0 -w /captures/$(hostname).pcap'
+    tty: true
