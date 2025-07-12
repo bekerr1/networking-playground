@@ -6,4 +6,6 @@ Additionally, its important to dive deep into networking topics in a controled a
 
 With that, this repo was in part inspired by me reading "Understanding Linux Networking Iinternal" by Christian Benvenuti.
 
+![alt text](https://m.media-amazon.com/images/I/81yeK6K6agL._SL300_.jpg)
+
 Ive also been quite inspired by some talks by the Netflix engineering teams, including previous members like Brendan Gregg, to dive deeper into internals and explore conecpts of performance to promote scale and precision in making future decisions.
