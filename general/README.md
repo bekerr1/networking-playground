@@ -61,6 +61,7 @@ Lets say we are sending a POST request to the server for /foo at http://managmen
 
 The header and body might be something like...
 
+```
 POST /foo HTTP/1.1
 Host: mgmt.bar.com
 Content-Type: application/json
@@ -69,6 +70,7 @@ Content-Length: 18
 {
   "hello": "world"
 }
+```
 
 The HTTP client implementation would seek to establish a connection with the server by first creating a TCP socket using system calls. System calls are just APIs for the kernel that user space applications can leverage. HTTP is most commonly implemented over TCP because of its stateful and reliable communication methods. The set of system calls may look something like 
 
