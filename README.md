@@ -8,4 +8,4 @@ With that, this repo was in part inspired by me reading "Understanding Linux Net
 
 ![alt text](https://m.media-amazon.com/images/I/81yeK6K6agL._SL300_.jpg)
 
-Ive also been quite inspired by some talks by the Netflix engineering teams, including previous members like Brendan Gregg, to dive deeper into internals and explore conecpts of performance to promote scale and precision in making future decisions.
+Ive also been quite inspired by some talks by the Netflix engineering teams ([cloud network setup](https://www.youtube.com/watch?v=fmUM9bMoCNE&t=1271s) and [NAT-less IPv6 Translation](https://www.youtube.com/watch?v=E-X8LoLl0CM)), including previous members like Brendan Gregg ([BPF performance](https://www.youtube.com/watch?v=16slh29iN1g), to dive deeper into internals and explore conecpts of performance to promote scale and precision in making future decisions. Some of this did start with looking into improvements in eBPF usability by the Linux Kernel community, so I hope to get as far as exploring some of that in-depth.
