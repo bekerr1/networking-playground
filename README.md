@@ -1,4 +1,4 @@
-# Breif
+# Brief
 
 This repository serves as my personal playground for all things networking. Ive been a cloud based software engineer for ~6 years now and understanding networking has proven time and again to be quite valuable. Even diving deeper into the basics can help build a stronger mental picture of whats happening. Typically, working with cloud providers, one would seek to integrate their tech into an application stack. Even so, its important to understand what the providers stack does and to do so, you usually need a solid base.
 
