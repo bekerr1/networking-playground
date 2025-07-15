@@ -1,0 +1,114 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install required packages
+      apt:
+        name:
+          - docker.io
+          - python3
+          - python3-pip
+          - jq
+          - openssl
+          - openvswitch-switch
+        state: present
+
+    #- name: Check if KIND binary exists
+    #  stat:
+    #    path: /usr/local/bin/kind
+    #  register: kind_stat
+    #  become: yes
+
+    - name: Install KIND
+      get_url:
+        url: https://kind.sigs.k8s.io/dl/v0.29.0/kind-linux-amd64
+        dest: /usr/local/bin/kind
+        mode: '0755'
+        owner: root
+        group: root
+
+    - name: Install kubectl
+      get_url:
+        url: "{{ kubectl_url }}/bin/linux/amd64/kubectl"
+        dest: /usr/local/bin/kubectl
+        mode: '0755'
+        owner: root
+        group: root
+      vars:
+        kubectl_url: https://dl.k8s.io/release/{{ lookup('url', 'https://dl.k8s.io/release/stable.txt', split_lines=false) }}
+
+    - name: Install Go
+      unarchive:
+        src: https://golang.org/dl/go1.24.5.linux-amd64.tar.gz
+        dest: /usr/local
+        remote_src: yes
+        creates: /usr/local/go
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Add vagrant user to docker group
+      user:
+        name: vagrant
+        groups: docker
+        append: yes
+
+    - name: Update .bashrc for vagrant user
+      lineinfile:
+        path: /home/vagrant/.bashrc
+        line: "{{ item }}"
+        state: present
+      loop:
+        - export PATH=$PATH:/usr/local/go/bin
+        - alias k='kubectl'
+      become: no
+
+    - name: Enable and start docker
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+
+    - name: Clone ovn-kubernetes repository
+      git:
+        repo: https://github.com/ovn-kubernetes/ovn-kubernetes.git
+        dest: /home/vagrant/ovn-kubernetes
+        version: v1.1.0-beta
+        accept_hostkey: yes
+      become: yes
+      become_user: vagrant
+
+    - name: Create .kube directory
+      file:
+        path: /home/vagrant/.kube
+        state: directory
+        owner: vagrant
+        group: vagrant
+        mode: '0755'
+      become: yes
+      become_user: vagrant
+    
+    - name: Build ovn-kubernetes ubuntu image
+      command: make ubuntu
+      environment:
+        PATH: "{{ ansible_env.PATH }}:/usr/local/go/bin"
+        KUBECONFIG: /home/vagrant/.kube/config
+      args:
+        chdir: /home/vagrant/ovn-kubernetes/dist/images
+      become: yes
+      become_user: vagrant
+
+    - name: Run kind.sh to provision KinD cluster
+      command: ./kind.sh -lr
+      args:
+        chdir: /home/vagrant/ovn-kubernetes/contrib
+      environment:
+        PATH: "{{ ansible_env.PATH }}:/usr/local/go/bin"
+        KUBECONFIG: /home/vagrant/.kube/config
+      become: yes
+      become_user: vagrant
+
