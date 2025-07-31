@@ -92,23 +92,23 @@
       become: yes
       become_user: vagrant
     
-    - name: Build ovn-kubernetes ubuntu image
-      command: make ubuntu
-      environment:
-        PATH: "{{ ansible_env.PATH }}:/usr/local/go/bin"
-        KUBECONFIG: /home/vagrant/.kube/config
-      args:
-        chdir: /home/vagrant/ovn-kubernetes/dist/images
-      become: yes
-      become_user: vagrant
+    #- name: Build ovn-kubernetes ubuntu image
+    #  command: make ubuntu
+    #  environment:
+    #    PATH: "{{ ansible_env.PATH }}:/usr/local/go/bin"
+    #    KUBECONFIG: /home/vagrant/.kube/config
+    #  args:
+    #    chdir: /home/vagrant/ovn-kubernetes/dist/images
+    #  become: yes
+    #  become_user: vagrant
 
-    - name: Run kind.sh to provision KinD cluster
-      command: ./kind.sh -lr
-      args:
-        chdir: /home/vagrant/ovn-kubernetes/contrib
-      environment:
-        PATH: "{{ ansible_env.PATH }}:/usr/local/go/bin"
-        KUBECONFIG: /home/vagrant/.kube/config
-      become: yes
-      become_user: vagrant
+    #- name: Run kind.sh to provision KinD cluster
+    #  command: ./kind.sh -lr -ic
+    #  args:
+    #    chdir: /home/vagrant/ovn-kubernetes/contrib
+    #  environment:
+    #    PATH: "{{ ansible_env.PATH }}:/usr/local/go/bin"
+    #    KUBECONFIG: /home/vagrant/.kube/config
+    #  become: yes
+    #  become_user: vagrant
 
