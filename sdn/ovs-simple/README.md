@@ -12,7 +12,7 @@ For the initial setup, we will use the following:
 * The host network will be on 172.16.56.0/24
 * The container network will be on 10.244.0.0/16
 
-<img width="780" height="461" alt="single-node-single-domain(1)" src="https://github.com/user-attachments/assets/7b439ecf-2b0c-4da7-ba09-bb2c2f2d0b37" />
+<img width="760" height="461" alt="single-node-single-domian" src="https://github.com/user-attachments/assets/8219e507-df82-48a0-90eb-13515aa1f1ba" />
 
 The network design will start with a single L2 domain. We will start with a simple setup and progressivly add more complexity. We'll talk about where this breaks down and whats required to manage the complexity. 
 
@@ -159,6 +159,8 @@ A better design here would be to segment L2 domains across nodes. Cross node tra
 - Any churn in container lifetime is handled per node only, a more decentralized approach.
 
 With this design, it means we would need to assign each node a static subnet range that pods are created in locally. Then between nodes, we create a logical router that can route between the subnets. Some IP address planning would still be required here. You could imagine a client specifying how many "containers per node" as a requirement. This would then be used to calculate the subnet size and assign a subnet to each node to accomodate. You might also want to obtain the max node count such that the overall subnet size provided can satisfy up to it.
+
+<img width="930" height="400" alt="mutli-node-multi-domain" src="https://github.com/user-attachments/assets/8e72521a-8fca-4d84-957a-c2d79fe050d4" />
 
 Lets dig into this design and see how we can implement it with OVS/OVN.
 
