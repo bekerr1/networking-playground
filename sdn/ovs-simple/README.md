@@ -12,6 +12,8 @@ For the initial setup, we will use the following:
 * The host network will be on 172.16.56.0/24
 * The container network will be on 10.244.0.0/16
 
+<img width="780" height="461" alt="single-node-single-domain(1)" src="https://github.com/user-attachments/assets/7b439ecf-2b0c-4da7-ba09-bb2c2f2d0b37" />
+
 The network design will start with a single L2 domain. We will start with a simple setup and progressivly add more complexity. We'll talk about where this breaks down and whats required to manage the complexity. 
 
 First create the virtualbox VM using vagrant. (FYI - I like to use VBox because its lightweigh and easy and allows me to keep my host clean from experimental networking changes).
