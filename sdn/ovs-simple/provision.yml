@@ -1,0 +1,39 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install required packages
+      apt:
+        name:
+          - docker.io
+          - docker-compose
+          - python3
+          - python3-pip
+          - jq
+          - openssl
+          - openvswitch-switch
+          - openvswitch-common 
+          - ovn-host
+          - ovn-central
+          - ovn-common
+          - ipcalc
+          - nmap
+          - net-tools
+        state: present
+
+    - name: Add vagrant user to docker group
+      user:
+        name: vagrant
+        groups: docker
+        append: yes
+
+    - name: Enable and start docker
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+
