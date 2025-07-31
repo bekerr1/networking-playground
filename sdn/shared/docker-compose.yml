@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  netsho1:
+    image: nicolaka/netshoot
+    container_name: netsho1
+    command: sleep infinity
+    network_mode: "none"
+  netsho2:
+    image: nicolaka/netshoot
+    container_name: netsho2
+    command: sleep infinity
+    network_mode: "none"
+  netsho3:
+    image: nicolaka/netshoot
+    container_name: netsho3
+    command: sleep infinity
+    network_mode: "none"
+  nginx1:
+    image: nginx
+    container_name: nginx1
+    network_mode: "none"
