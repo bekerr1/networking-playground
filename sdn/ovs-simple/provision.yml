@@ -1,11 +1,7 @@
 ---
-- hosts: all
+- hosts: nodes
   become: yes
   tasks:
-    - name: Update apt cache
-      apt:
-        update_cache: yes
-
     - name: Install required packages
       apt:
         name:
@@ -17,14 +13,11 @@
           - openssl
           - openvswitch-switch
           - openvswitch-common 
-          - ovn-host
-          - ovn-central
           - ovn-common
           - ipcalc
           - nmap
           - net-tools
         state: present
-
     - name: Add vagrant user to docker group
       user:
         name: vagrant
@@ -37,3 +30,26 @@
         enabled: yes
         state: started
 
+
+- hosts: central
+  become: yes
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - jq
+          - openssl
+          - openvswitch-switch
+          - openvswitch-common 
+          - ovn-host
+          - ovn-central
+          - ovn-common
+          - net-tools
+        state: present
+
+- hosts: all
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
