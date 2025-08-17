@@ -1,0 +1,12 @@
+{
+  "defaultAction": "SCMP_ACT_ALLOW",
+  "listenerPath": "/run/seccomp-agent.socket",
+  "syscalls": [
+    {
+      "names": [
+        "connect"
+      ],
+      "action": "SCMP_ACT_NOTIFY"
+    }
+  ]
+}
