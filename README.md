@@ -1,6 +1,6 @@
 # Overview
 
-This repository serves as my personal playground for all things networking. Ive been a cloud based software engineer for ~6 years now and understanding networking has proven time and again to be quite valuable. Even diving deeper into the basics can help build a stronger mental picture of whats happening. Typically, working with cloud providers, one would seek to integrate their tech into an application stack. Even so, its important to understand what the providers stack does and to do so, you usually need a solid base.
+This repository serves as my personal playground for all things networking. Ive been a cloud based software engineer for ~6 years now and understanding networking has proven time and again to be quite valuable. Even diving deeper into the basics can help build a stronger mental picture of whats happening. Typically, working with cloud providers, one would seek to integrate their tech into a managed stack where some processes are abstracted away. Even so, its important to understand what the providers stack does and to do so, you usually need a solid base.
 
 Additionally, its important to dive deep into networking topics in a controled and simplified env to ensure your grasping the concepts with least noise. This repo is segmented by topics and will include some experiments ive deemed worthy for each segment. Ill also try to go in depth with a focus on Linux stack all the way to the lower levels (L2 Ethernet packet processing tracepoints). With this, I hope to gain a better understanding of how Linux networking functions.
 
